@@ -64,3 +64,13 @@ const allWagesFor = (empRecObj) => {
 
 return payable
 }
+
+const findEmployeeByFirstName = (arrayOfEmps, firstName) => {
+  return arrayOfEmps.find(empRecObj => empRecObj.firstName === firstName)
+}
+
+const calculatePayroll = (arrayOfEmps) => {
+  return arrayOfEmps.reduce((memo, empRecObj) => {
+    return memo + allWagesFor(empRecObj)
+  }, 0)
+}
