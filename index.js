@@ -48,3 +48,19 @@ const hoursWorkedOnDate = (empRecObj, date) => {
     })
   return (outDate.hour - inDate.hour) / 100
 }
+
+const wagesEarnedOnDate = (empRecObj, date) => {
+  return hoursWorkedOnDate(empRecObj, date) * empRecObj.payPerHour
+}
+
+const allWagesFor = (empRecObj) => {
+  let eligibleDates = empRecObj.timeInEvents.map(function(e){
+    return e.date
+  })
+
+  let payable = eligibleDates.reduce(function(memo, d){
+    return memo + wagesEarnedOnDate(empRecObj, d)
+  }, 0)
+
+return payable
+}
